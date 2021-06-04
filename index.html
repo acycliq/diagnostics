@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnostics</title>
+
+    <!--jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.min.css">
+    <script src="./lib/js/bootstrap.min.js"></script>
+
+    <!-- keen.io -->
+    <link rel="stylesheet" href="lib/css/keen-dashboards.css">
+    <script src="./lib/js/keen.min.js"></script>
+
+    <!--d3 -->
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+
+    <script src='./heatmap.js'></script>
+    <script src="heatmap_2.js"></script>
+    <script src="linechart.js"></script>
+    <link rel="stylesheet" href="lib/css/index.css">
+
+
+</head>
+<body>
+<div class="container-fluid">
+        <div class="row">
+        <div class="col-sm-12" id="line_chart_main">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Convergence
+                </div>
+                <div class="chart-stage" id="heat-convergence">
+                    <img src="convergence.png" alt="Image" height="580">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" id="confusion_matrix">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Estimated Gene Expression Matrix
+                </div>
+                <div class="chart-stage" id="heat-chart">
+                    <svg width="1300" height="980"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" id="confusion_matrix_2">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    Avg Gene Counts Grouped by Most Likely Cell Class
+                </div>
+                <div class="chart-stage" id="heat-chart_2">
+                    <svg width="1300" height="980"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    d3.json("posterior_mu.json", function (data) {
+        console.log('json parsed!!');
+        renderHeatmap(data);
+
+        // Hide the legend. Not ready yet
+        $('.legendWrapper').hide();
+    })
+
+    d3.json("counts_per_cell.json", function (data) {
+        console.log('json parsed!!');
+        renderHeatmap_2(data);
+
+        // Hide the legend. Not ready yet
+        $('.legendWrapper').hide();
+    })
+
+    // linechart("line_chart_data.json")
+
+</script>
+
+</body>
+</html>
