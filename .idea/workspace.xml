@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ae21af3a-c59b-4843-9542-8f487eed42ca" name="Default Changelist" comment="" />
+    <list default="true" id="ae21af3a-c59b-4843-9542-8f487eed42ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1tTlUAcDbpG9pMGIEOhr9K48pPF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -15,6 +22,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -31,11 +39,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622800972841</updated>
-      <workItem from="1622800977315" duration="54000" />
+      <workItem from="1622800977315" duration="2015000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="580" y="1173" key="Github.Dialog.Accounts.Choose" timestamp="1622801319407">
+      <screen x="0" y="0" width="1440" height="2520" />
+    </state>
+    <state x="580" y="1173" key="Github.Dialog.Accounts.Choose/1440.-7.1440.2520/0.0.1440.2520@0.0.1440.2520" timestamp="1622801319407" />
+    <state x="312" y="993" key="Vcs.Push.Dialog.v2" timestamp="1622801289454">
+      <screen x="0" y="0" width="1440" height="2520" />
+    </state>
+    <state x="312" y="993" key="Vcs.Push.Dialog.v2/1440.-7.1440.2520/0.0.1440.2520@0.0.1440.2520" timestamp="1622801289454" />
+    <state x="399" y="1051" key="git4idea.merge.GitPullDialog" timestamp="1622801221945">
+      <screen x="0" y="0" width="1440" height="2520" />
+    </state>
+    <state x="399" y="1051" key="git4idea.merge.GitPullDialog/1440.-7.1440.2520/0.0.1440.2520@0.0.1440.2520" timestamp="1622801221945" />
   </component>
 </project>
