@@ -1,4 +1,5 @@
 function barchart(data) {
+    var percentFormat = d3.format('.0%') // rounded percentage
 
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 20, bottom: 70, left: 40},
@@ -11,6 +12,11 @@ function barchart(data) {
         .padding(0.1);
     var y = d3.scaleLinear()
         .range([height, 0]);
+
+    var tooltip = d3.select("body").append("div")
+        .attr("id", "tooltip_heatmap")
+        .attr('class', 'tooltip')
+        .style("opacity", 0);
 
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
@@ -36,6 +42,7 @@ function barchart(data) {
         return d.Prob;
     })]);
 
+
     // append the rectangles for the bar chart
     svg.selectAll(".bar")
         .data(data)
@@ -50,7 +57,18 @@ function barchart(data) {
         })
         .attr("height", function (d) {
             return height - y(d.Prob);
-        });
+        })
+        .on("mouseover", function (d) {
+            $("#tooltip_heatmap").html("Cell class: " + d.Class + "<br/>Prob: " + percentFormat(d.Prob) );
+            var xpos = d3.event.pageX + 10;
+            var ypos = d3.event.pageY + 20;
+            $("#tooltip_heatmap").css("left", xpos + "px").css("top", ypos + "px").animate().css("opacity", 1);
+        }).on("mouseout", function () {
+        $("#tooltip_heatmap").animate({
+            duration: 500
+        }).css("opacity", 0);
+    })
+
 
     // add the x Axis
     svg.append("g")
@@ -60,8 +78,7 @@ function barchart(data) {
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
-        .attr("transform", "rotate(-60)");
-
+        .attr("transform", "rotate(-60)")
 
 
     // add the y Axis
