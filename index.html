@@ -21,7 +21,8 @@
     <script src='./heatmap.js'></script>
     <script src="heatmap_2.js"></script>
     <script src="linechart.js"></script>
-    <!--    <link rel="stylesheet" href="lib/css/index.css">-->
+    <script src="barchart.js"></script>
+    <link rel="stylesheet" href="lib/css/index.css">
 
     <style>
         #div_id {
@@ -45,7 +46,12 @@
             stroke-width: 2px;
         }
 
+        .bar {
+            fill: steelblue;
+        }
+
     </style>
+
 
 </head>
 <body class="application" id="body">
@@ -64,14 +70,28 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12" id="line_chart_main">
-            <div class="chart-wrapper">
-                <div class="chart-title">
-                    Convergence
-                </div>
-                <div class="chart-stage" id="line-chart">
-                    <svg width="600" height="180"></svg>
+            <div class="col-sm-6">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Convergence
+                    </div>
+                    <div class="chart-stage" id="line-chart">
+                        <svg></svg>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-sm-6">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Cell Class posterior
+                    </div>
+                    <div class="chart-stage" id="bar-chart">
+                        <svg></svg>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -125,6 +145,10 @@
     // Get the data
     d3.csv("convergence_data.csv", function (error, data) {
         linechart(data);
+    });
+
+    d3.csv("posterior_cellClass.csv", function (error, data) {
+        barchart(data)
     });
 
     d3.json("posterior_mu.json", function (data) {
