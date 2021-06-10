@@ -12,7 +12,7 @@ function linechart(data) {
     // set the dimensions and margins of the graph
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
         width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        height = 660 - margin.top - margin.bottom;
 
 
     // set the ranges
@@ -62,5 +62,34 @@ function linechart(data) {
     // Add the Y Axis
     svg.append("g")
         .call(d3.axisLeft(y));
+
+        // text label for the x axis
+    var textGroup = svg.append('g')
+        .attr('id', 'axesLabels')
+
+    textGroup
+        .append('g')
+        .attr('id', 'xAxisLabel')
+        .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.bottom - 5) + ")")
+        .attr('font-family', 'sans-serif')
+        .attr('font-size', 12)
+        .attr('text-anchor', 'middle')
+        .append('g')
+        .attr('id', 'xAxisLabelText')
+        .append('text')
+        .text("Iteration");
+
+    // text label for the y axis
+    textGroup
+        .append('g')
+        .attr('id', 'yAxisLabel')
+        .attr('transform', "translate(" + (-0.7*margin.left) + " ," + (height/2) + ") rotate(-90)")
+        .attr('font-family', 'sans-serif')
+        .attr('font-size', 12)
+        .attr('text-anchor', 'middle')
+        .append('g')
+        .attr('id', 'yAxisLabelText')
+        .append('text')
+        .text("Delta");
 
 }

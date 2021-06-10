@@ -5,7 +5,7 @@ function heatmap_2(dataset) {
 
     var tsn = d3.transition().duration(1000);
 
-    var margin = {top: 10, right: 85, bottom: 70, left: 90};
+    var margin = {top: 10, right: 85, bottom: 80, left: 90};
 
     var width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom;

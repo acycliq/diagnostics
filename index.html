@@ -22,6 +22,7 @@
     <script src="heatmap_2.js"></script>
     <script src="linechart.js"></script>
     <script src="barchart.js"></script>
+    <script src="barchart_2.js"></script>
     <link rel="stylesheet" href="lib/css/index.css">
 
     <style>
@@ -73,7 +74,7 @@
             <div class="col-sm-6">
                 <div class="chart-wrapper">
                     <div class="chart-title">
-                        Convergence
+                        Convergence: Max abs difference of the spot-to-cell probabilities between successive runs
                     </div>
                     <div class="chart-stage" id="line-chart">
                         <svg></svg>
@@ -82,14 +83,31 @@
             </div>
 
             <div class="col-sm-6">
-                <div class="chart-wrapper">
-                    <div class="chart-title">
-                        Cell Class posterior
-                    </div>
-                    <div class="chart-stage" id="bar-chart">
-                        <svg></svg>
+
+                <div class="row">
+                    <div class="chart-wrapper">
+                        <div class="chart-title">
+                            Cell Class posterior
+                        </div>
+                        <div class="chart-stage" id="bar-chart">
+                            <svg></svg>
+                        </div>
                     </div>
                 </div>
+
+
+                <div class="row">
+                    <div class="chart-wrapper">
+                        <div class="chart-title">
+                            Class size: If each cell is assigned to the most likely class, how many members each class ends up with?
+                        </div>
+                        <div class="chart-stage" id="bar-chart-2">
+                            <svg></svg>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
@@ -149,6 +167,10 @@
 
     d3.csv("posterior_cellClass.csv", function (error, data) {
         barchart(data)
+    });
+
+    d3.csv("top_class_size.csv", function (error, data) {
+        barchart_2(data)
     });
 
     d3.json("posterior_mu.json", function (data) {

@@ -1,4 +1,4 @@
-function barchart(data) {
+function barchart_2(data) {
     var percentFormat = d3.format('.0%') // rounded percentage
 
     // set the dimensions and margins of the graph
@@ -21,7 +21,7 @@ function barchart(data) {
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    var svg = d3.select("#bar-chart").select("svg")
+    var svg = d3.select("#bar-chart-2").select("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -31,7 +31,7 @@ function barchart(data) {
 
     // format the data
     data.forEach(function (d) {
-        d.Prob = +d.Prob;
+        d.Size = +d.Size;
     });
 
     // Scale the range of the data in the domains
@@ -39,7 +39,7 @@ function barchart(data) {
         return d.Class;
     }));
     y.domain([0, d3.max(data, function (d) {
-        return d.Prob;
+        return d.Size;
     })]);
 
 
@@ -53,13 +53,13 @@ function barchart(data) {
         })
         .attr("width", x.bandwidth())
         .attr("y", function (d) {
-            return y(d.Prob);
+            return y(d.Size);
         })
         .attr("height", function (d) {
-            return height - y(d.Prob);
+            return height - y(d.Size);
         })
         .on("mouseover", function (d) {
-            $("#tooltip_heatmap").html("Cell class: " + d.Class + "<br/>Prob: " + percentFormat(d.Prob) );
+            $("#tooltip_heatmap").html("Cell class: " + d.Class + "<br/>Size: " + d.Size );
             var xpos = d3.event.pageX + 10;
             var ypos = d3.event.pageY + 20;
             $("#tooltip_heatmap").css("left", xpos + "px").css("top", ypos + "px").animate().css("opacity", 1);
