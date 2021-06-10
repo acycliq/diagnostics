@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Diagnostics</title>
+    <title>CA1 Diagnostics</title>
 
     <!--jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -61,7 +61,7 @@
     <div class="container-fluid">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Diagnostics</a>
+                <a class="navbar-brand" href="#">CA1 Diagnostics</a>
             </div>
         </div><!--/.container-fluid -->
     </div>
@@ -74,7 +74,7 @@
             <div class="col-sm-6">
                 <div class="chart-wrapper">
                     <div class="chart-title">
-                        Convergence: Max abs difference of the spot-to-cell probabilities between successive runs
+                        1. Convergence: Max abs difference of the spot-to-cell probabilities between successive runs
                     </div>
                     <div class="chart-stage" id="line-chart">
                         <svg></svg>
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="chart-wrapper">
                         <div class="chart-title">
-                            Cell Class posterior
+                            2. Cell Class posterior
                         </div>
                         <div class="chart-stage" id="bar-chart">
                             <svg></svg>
@@ -99,7 +99,7 @@
                 <div class="row">
                     <div class="chart-wrapper">
                         <div class="chart-title">
-                            Class size: If each cell is assigned to the most likely class, how many members each class ends up with?
+                            3. Class size: If each cell is assigned to the most likely class, how many members each class ends up with?
                         </div>
                         <div class="chart-stage" id="bar-chart-2">
                             <svg></svg>
@@ -118,7 +118,7 @@
             <div class="col-sm-7" id="confusion_matrix">
                 <div class="chart-wrapper">
                     <div class="chart-title">
-                        Estimated Gene Expression Matrix
+                        4. Estimated Gene Expression Matrix
                     </div>
                     <div class="chart-stage" id="heat-chart">
                         <svg width="1300" height="980"></svg>
@@ -128,7 +128,7 @@
             <div class="col-sm-5" id="confusion_matrix_2">
                 <div class="chart-wrapper">
                     <div class="chart-title">
-                        Avg Gene Counts Grouped by Most Likely Cell Class
+                        5. Avg Gene Counts Grouped by Most Likely Cell Class
                     </div>
                     <div id="div_id">
                         <div class="chart-stage" id="heat-chart_2">
