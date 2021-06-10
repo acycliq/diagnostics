@@ -1,11 +1,11 @@
 function linechart(data) {
 
-    var parseTime = d3.timeParse("%d-%b-%y");
+    // var parseTime = d3.timeParse("%d-%b-%y");
 
 
     // format the data
     data.forEach(function (d) {
-        d.date = parseTime(d.date);
+        d.date = +d.date;
         d.close = +d.close;
     });
 
@@ -16,7 +16,7 @@ function linechart(data) {
 
 
     // set the ranges
-    var x = d3.scaleTime().range([0, width]);
+    var x = d3.scaleLinear().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
 
     // define the line

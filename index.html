@@ -21,52 +21,112 @@
     <script src='./heatmap.js'></script>
     <script src="heatmap_2.js"></script>
     <script src="linechart.js"></script>
-    <link rel="stylesheet" href="lib/css/index.css">
+    <!--    <link rel="stylesheet" href="lib/css/index.css">-->
 
+    <style>
+        #div_id {
+            display: flex;
+        }
+
+        #Note {
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+    </style>
 
 </head>
-<body>
+<body class="application" id="body">
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Cell Mapping Visualization</a>
+            </div>
+        </div><!--/.container-fluid -->
+    </div>
+</div>
+
+
 <div class="container-fluid">
-        <div class="row">
+    <div class="row">
         <div class="col-sm-12" id="line_chart_main">
             <div class="chart-wrapper">
                 <div class="chart-title">
                     Convergence
                 </div>
-                <div class="chart-stage" id="heat-convergence">
-                    <img src="convergence.png" alt="Image" height="580">
+                <div class="chart-stage" id="line-chart">
+                    <svg width="600" height="180"></svg>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-sm-12" id="confusion_matrix">
-            <div class="chart-wrapper">
-                <div class="chart-title">
-                    Estimated Gene Expression Matrix
+        <div class="col-sm-12">
+            <div class="col-sm-7" id="confusion_matrix">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Estimated Gene Expression Matrix
+                    </div>
+                    <div class="chart-stage" id="heat-chart">
+                        <svg width="1300" height="980"></svg>
+                    </div>
                 </div>
-                <div class="chart-stage" id="heat-chart">
-                    <svg width="1300" height="980"></svg>
+            </div>
+            <div class="col-sm-5" id="confusion_matrix_2">
+                <div class="chart-wrapper">
+                    <div class="chart-title">
+                        Avg Gene Counts Grouped by Most Likely Cell Class
+                    </div>
+                    <div id="div_id">
+                        <div class="chart-stage" id="heat-chart_2">
+                            <svg width="600" height="980"></svg>
+                        </div>
+
+                        <div id="Note">
+                            <ul>
+                                <b>How I did this:</b>
+                                <li>For any given cell find
+                                    its top class
+                                </li>
+                                <li>Get any other cell with the
+                                    same top class
+                                </li>
+                                <li>Within this subgroup of cells,
+                                    find the mean gene counts
+                                </li>
+                                <li>Repeat for a new cell with a new top class</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12" id="confusion_matrix_2">
-            <div class="chart-wrapper">
-                <div class="chart-title">
-                    Avg Gene Counts Grouped by Most Likely Cell Class
-                </div>
-                <div class="chart-stage" id="heat-chart_2">
-                    <svg width="600" height="980"></svg>
-                </div>
-            </div>
-        </div>
-    </div>
+
+</div>
 </div>
 
 <script>
+    // Get the data
+    d3.csv("convergence_data.csv", function (error, data) {
+        linechart(data);
+    });
+
     d3.json("posterior_mu.json", function (data) {
         console.log('json parsed!!');
         renderHeatmap(data);
