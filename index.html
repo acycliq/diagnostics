@@ -20,6 +20,7 @@
 
     <script src='./heatmap.js'></script>
     <script src="heatmap_2.js"></script>
+    <script src="confusion_matrix.js"></script>
     <script src="linechart.js"></script>
     <script src="barchart.js"></script>
     <script src="barchart_2.js"></script>
@@ -54,6 +55,7 @@
     </style>
 
 
+
 </head>
 <body class="application" id="body">
 
@@ -68,87 +70,126 @@
 </div>
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12" id="line_chart_main">
-            <div class="col-sm-6">
-                <div class="chart-wrapper">
-                    <div class="chart-title">
-                        1. Convergence: Max abs difference of the spot-to-cell probabilities between successive runs
+<!-- tab navigation -->
+<ul class="nav nav-tabs" role="tablist" id="index-tabs" style="margin-top:-6px;">
+    <!-- nav bar left side: tabs -the map, table, about nav tabs, for content, see below -->
+    <li class="active"><a href="#map-content" data-toggle="tab" id="map-tab">Main</a></li>
+    <li><a href="#confusion-table-content" data-toggle="tab" id="confusion-table-tab">Confusion Matrix</a></li>
+</ul>
+
+<!-- content for the nav tabs -->
+<div class="tab-content">
+    <!-- map content tab -->
+    <div class="tab-pane active fade in" id="map-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12" id="line_chart_main">
+                    <div class="col-sm-6">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                1. Convergence: Max abs difference of the spot-to-cell probabilities between successive
+                                runs
+                            </div>
+                            <div class="chart-stage" id="line-chart">
+                                <svg></svg>
+                            </div>
+                        </div>
                     </div>
-                    <div class="chart-stage" id="line-chart">
-                        <svg></svg>
+
+                    <div class="col-sm-6">
+
+                        <div class="row">
+                            <div class="chart-wrapper">
+                                <div class="chart-title">
+                                    2. Cell Class posterior
+                                </div>
+                                <div class="chart-stage" id="bar-chart">
+                                    <svg></svg>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="chart-wrapper">
+                                <div class="chart-title">
+                                    3. Class size: If each cell is assigned to the most likely class, how many members
+                                    each
+                                    class ends up with?
+                                </div>
+                                <div class="chart-stage" id="bar-chart-2">
+                                    <svg></svg>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
+
                 </div>
             </div>
 
-            <div class="col-sm-6">
-
-                <div class="row">
-                    <div class="chart-wrapper">
-                        <div class="chart-title">
-                            2. Cell Class posterior
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-7" id="confusion_matrix">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                4. Estimated Gene Expression Matrix
+                            </div>
+                            <div class="chart-stage" id="heat-chart">
+                                <svg width="1300" height="980"></svg>
+                            </div>
                         </div>
-                        <div class="chart-stage" id="bar-chart">
-                            <svg></svg>
+                    </div>
+                    <div class="col-sm-5" id="confusion_matrix_2">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                5. Avg Gene Counts Grouped by Most Likely Cell Class
+                            </div>
+                            <div id="div_id">
+                                <div class="chart-stage" id="heat-chart_2">
+                                    <svg width="600" height="980"></svg>
+                                </div>
+
+                                <div id="Note">
+                                    <ul>
+                                        <b>How I did this:</b>
+                                        <li>For any given cell find
+                                            its top class
+                                        </li>
+                                        <li>Get any other cell with the
+                                            same top class
+                                        </li>
+                                        <li>Within this subgroup of cells,
+                                            find the mean gene counts
+                                        </li>
+                                        <li>Repeat for a new cell with a new top class</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="row">
-                    <div class="chart-wrapper">
-                        <div class="chart-title">
-                            3. Class size: If each cell is assigned to the most likely class, how many members each class ends up with?
-                        </div>
-                        <div class="chart-stage" id="bar-chart-2">
-                            <svg></svg>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
 
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-7" id="confusion_matrix">
-                <div class="chart-wrapper">
-                    <div class="chart-title">
-                        4. Estimated Gene Expression Matrix
-                    </div>
-                    <div class="chart-stage" id="heat-chart">
-                        <svg width="1300" height="980"></svg>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-5" id="confusion_matrix_2">
-                <div class="chart-wrapper">
-                    <div class="chart-title">
-                        5. Avg Gene Counts Grouped by Most Likely Cell Class
-                    </div>
-                    <div id="div_id">
-                        <div class="chart-stage" id="heat-chart_2">
-                            <svg width="600" height="980"></svg>
-                        </div>
 
-                        <div id="Note">
-                            <ul>
-                                <b>How I did this:</b>
-                                <li>For any given cell find
-                                    its top class
-                                </li>
-                                <li>Get any other cell with the
-                                    same top class
-                                </li>
-                                <li>Within this subgroup of cells,
-                                    find the mean gene counts
-                                </li>
-                                <li>Repeat for a new cell with a new top class</li>
-                            </ul>
+    <!-- Confusion table tab -->
+    <div class="tab-pane fade" id="confusion-table-content">
+        <div class="container-fluid">
+            <div class="row" style="margin-top:5px">
+                <!--//top row-->
+                <div class="row" style="margin-top:5px">
+                    <div class="col-sm-12">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Confusion Matrix
+                            </div>
+                            <div class="chart-stage" id="confusion-matrix">
+                                <svg width="1300" height="980"></svg>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -156,8 +197,9 @@
         </div>
     </div>
 
+
 </div>
-</div>
+
 
 <script>
     // Get the data
@@ -176,7 +218,6 @@
     d3.json("posterior_mu.json", function (data) {
         console.log('json parsed!!');
         renderHeatmap(data);
-
         // Hide the legend. Not ready yet
         $('.legendWrapper').hide();
     })
@@ -184,7 +225,13 @@
     d3.json("counts_per_cell.json", function (data) {
         console.log('json parsed!!');
         renderHeatmap_2(data);
+        // Hide the legend. Not ready yet
+        $('.legendWrapper').hide();
+    })
 
+    d3.json("confusion_matrix.json", function (data) {
+        console.log('json parsed!!');
+        renderConfusionMatrix(data);
         // Hide the legend. Not ready yet
         $('.legendWrapper').hide();
     })
